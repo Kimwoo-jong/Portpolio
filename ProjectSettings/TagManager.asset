@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Colliders
+  - Maps
+  - Ground
+  - Wall
+  - Floor
+  - Gate
+  - Dust
+  - Obstacles
+  - Slope
+  - GroundCheck
+  - Weapon
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -13,9 +25,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Ground
+  - Obstacles
+  - Player
   - 
   - 
   - 
@@ -40,4 +52,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2631680195
+    locked: 0
+  - name: Player
+    uniqueID: 3169874013
+    locked: 0
+  - name: Objects
+    uniqueID: 2321271431
     locked: 0
