@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BirdPool : MonoBehaviour
 {
-    public GameObject birdPrefab;               //새 오브젝트 프리팹을 담을 변수
+    public GameObject birdPrefab;                                    //새 오브젝트 프리팹을 담을 변수
     public List<GameObject> poolingBird = new List<GameObject>();    //메인화면에서 날아가는 새를 담기 위한 List 변수
-    private BoxCollider2D m_RangeCollider;      //새가 스폰될 범위를 보여주는 BoxCollider 변수
+    private BoxCollider2D m_RangeCollider;                           //새가 스폰될 범위를 보여주는 BoxCollider 변수
 
-    private int m_BirdCount;                    //날아가는 새의 마릿수를 저장할 Int 변수
+    private int m_BirdCount;                                         //날아가는 새의 마릿수를 저장할 Int 변수
     private int m_Count = 0;
 
     // Start is called before the first frame update

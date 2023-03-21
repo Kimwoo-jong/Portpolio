@@ -8,11 +8,11 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
 
     [Header("플레이어 이동")]
-    public float maxSpeed;                     //플레이어 속도 제한을 위한 값
+    public float maxSpeed;                      //플레이어 속도 제한을 위한 값
     public float horizontalInput = 0f;
 
     [Header("플레이어 점프")]
-    public float jumpPower;                    //플레이어 점프 시 가해지는 힘
+    public float jumpPower;                     //플레이어 점프 시 가해지는 힘
     private bool isGrounded;                    //플레이어가 땅에 닿아 있는지 확인
 
     public LayerMask groundLayer;
@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius;
 
     [Header("플레이어 효과")]
-    [SerializeField]
-    private ParticleSystem[] playerEffect;        //플레이어의 움직임에 따라 다른 파티클이 실행될 예정
+    [SerializeField] private ParticleSystem playerEffect;        //플레이어의 움직임에 따라 다른 파티클이 실행될 예정
+    [SerializeField] private GameObject jumpEffect;              //점프 이펙트 프리팹을 연결
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         maxSpeed = 5f;
         jumpPower = 12f;
 
-        playerEffect = GetComponentsInChildren<ParticleSystem>();
+        playerEffect = GetComponentInChildren<ParticleSystem>();
     }
     private void Update()
     {
@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
     }
+    #region 이동 관련
     //플레이어의 이동 담당
     private void Movement()
     {
@@ -92,6 +93,8 @@ public class PlayerController : MonoBehaviour
             CreateMoveDust();
         }
     }
+    #endregion
+    #region 점프 관련
     private void CheckSurrounding()
     {
         //원을 그려서 땅에 닿아있는지 확인
@@ -105,12 +108,20 @@ public class PlayerController : MonoBehaviour
         {
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             anim.SetBool("isJump", true);
+            CreateJumpDust();
         }
     }
+    #endregion
+    #region 이동효과
     private void CreateMoveDust()
     {
-        playerEffect[0].Play();
+        playerEffect.Play();
     }
+    private void CreateJumpDust()
+    {
+        Instantiate(jumpEffect, new Vector2(transform.position.x, transform.position.y - 0.1f), Quaternion.identity);
+    }
+    #endregion
     //플레이어 오브젝트가 땅에 충돌할 때 애니메이션을 종료해줘야 하기 때문
     private void OnCollisionEnter2D(Collision2D col)
     {

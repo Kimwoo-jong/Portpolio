@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerMouseControl : MonoBehaviour
 {
-    [SerializeField]
-    private SpriteRenderer player;
+    [SerializeField] private SpriteRenderer player;
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<SpriteRenderer>();

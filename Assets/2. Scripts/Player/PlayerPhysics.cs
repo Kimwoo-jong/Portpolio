@@ -14,16 +14,12 @@ public class PlayerPhysics : MonoBehaviour
     [Header("경사면")]
     public float slopePower;                    //슬로프를 오르기 위해 밀어주는 힘
     public float slopeRayLength;                //슬로프 체크를 위한 Raycast의 길이
-    [SerializeField]
-    private bool isOnSlope;                     //슬로프를 오르고 있는지 확인해줄 변수
-    [SerializeField]
-    private Vector2 slopeDirection;             //슬로프의 방향
-    [SerializeField]
-    private float slopeAngle;                   //슬로프의 각도 확인용 변수
+    [SerializeField] private bool isOnSlope;                     //슬로프를 오르고 있는지 확인해줄 변수
+    [SerializeField] private Vector2 slopeDirection;             //슬로프의 방향
+    [SerializeField] private float slopeAngle;                   //슬로프의 각도 확인용 변수
 
     [Header("플레이어 물리")]
-    [SerializeField]
-    private float playerGravityScale;           //플레이어가 받을 중력
+    [SerializeField] private float playerGravityScale;           //플레이어가 받을 중력
 
     private void Awake()
     {

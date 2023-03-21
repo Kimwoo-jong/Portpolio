@@ -6,10 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject pnlMain;
-    [SerializeField]
-    private GameObject pnlOption;
+    [SerializeField] private GameObject pnlMain;
+    [SerializeField] private GameObject pnlOption;
     private void Start()
     {
         pnlMain = GameObject.Find("Main");

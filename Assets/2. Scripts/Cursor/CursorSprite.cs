@@ -4,10 +4,24 @@ using UnityEngine;
 
 public class CursorSprite : MonoBehaviour
 {
-    [SerializeField]
-    private Texture2D cursorTexture;
-
+    private static CursorSprite instance;
+    
+    [Header("커서")]
+    [SerializeField] private Texture2D cursorTexture;
     private Vector2 cursorHotspot;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
