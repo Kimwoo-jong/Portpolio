@@ -7,15 +7,17 @@ using UnityEngine.UI;
 public class StatToolTip : MonoBehaviour
 {
     [SerializeField] Text statNameText;
-    [SerializeField] Text statDescription;
     [SerializeField] Text statModifierText;
+    [SerializeField] Text statDescription;
 
     private StringBuilder sb = new StringBuilder();
 
-    public void ShowTooltip(CharacterStat stat, string statName)
+    public void ShowTooltip(CharacterStat stat, string statName, string statdescription)
     {
         statNameText.text = GetStatsName(stat, statName);
         statModifierText.text = GetStatModifiersText(stat);
+        statDescription.text = GetStatDescription(statdescription);
+         
         gameObject.SetActive(true);
     }
     public void HideTooltip()
@@ -35,7 +37,7 @@ public class StatToolTip : MonoBehaviour
 
         foreach (StatModifier mod in stat.StatModifiers)
         {
-            if(sb.Length > 0)
+            if (sb.Length > 0)
             {
                 sb.AppendLine();
             }
@@ -43,6 +45,7 @@ public class StatToolTip : MonoBehaviour
             {
                 sb.Append("+");
             }
+
             sb.Append(mod.Value);
 
             EquippableItem item = mod.Source as EquippableItem;
@@ -56,30 +59,13 @@ public class StatToolTip : MonoBehaviour
         return sb.ToString();
     }
     //스탯에 관한 설명란
-    //private string GetStatDescription(CharacterStat stat)
-    //{
-    //    sb.Length = 0;
+    //방어, 막기, 크리티컬 확률, 회피를 제외한 나머지 스탯은 추가 텍스트가 뜨지 않는다.
+    private string GetStatDescription(string description)
+    {
+        sb.Length = 0;
 
-    //    foreach (StatModifier mod in stat.StatModifiers)
-    //    {
-    //        if (sb.Length > 0)
-    //        {
-    //            sb.AppendLine();
-    //        }
+        sb.Append(description);
 
-    //        EquippableItem item = mod.Source as EquippableItem;
-
-    //        if (item != null)
-    //        {
-    //            sb.Append(" ");
-    //            sb.Append(item.itemDescription);
-    //        }
-    //        else
-    //        {
-    //            Debug.LogError("Modifier is not an EquippableItem!");
-    //        }
-    //    }
-
-    //    return sb.ToString();
-    //}
+        return sb.ToString();
+    }
 }

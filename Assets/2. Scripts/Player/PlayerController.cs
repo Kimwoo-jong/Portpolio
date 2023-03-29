@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         maxSpeed = 5f;
-        jumpPower = 12f;
+        jumpPower = 15f;
 
         playerEffect = GetComponentInChildren<ParticleSystem>();
     }

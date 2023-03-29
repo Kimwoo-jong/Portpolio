@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f2a59d0aecb5a42b253d5870af0461, type: 3}
+  m_Name: Gold Bundles
+  m_EditorClassIdentifier: 
+  id: 9231e26ea0258474ba4d5a624c54a335
+  itemName: "\uAE08\uD654 \uBB49\uCE58"
+  itemImage: {fileID: 5734105615972618414, guid: a9c2bb33947aeac4f8ced4d83ca918b0,
+    type: 3}
+  m_ItemValue: 0
+  itemDescription: "\uAE08\uAD34"
+  MaximumStacks: 1

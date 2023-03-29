@@ -19,6 +19,7 @@ public class InventoryInput : MonoBehaviour
         {
             ToggleStatPanel();
         }
+
         if(Input.GetKeyDown(toggleCharacterPanelKeys[1]))
         {
             ToggleEquipmentPanel();

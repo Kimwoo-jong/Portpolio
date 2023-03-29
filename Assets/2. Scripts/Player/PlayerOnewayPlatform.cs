@@ -6,11 +6,11 @@ public class PlayerOnewayPlatform : MonoBehaviour
 {
     private GameObject currentOnewayPlatform;
 
-    [SerializeField] private BoxCollider2D player;
+    [SerializeField] private CapsuleCollider2D player;
 
     private void Start()
     {
-        player = GetComponent<BoxCollider2D>();
+        player = GetComponent<CapsuleCollider2D>();
     }
 
     private void Update()

@@ -7,13 +7,29 @@ public class PlayerStatus : MonoBehaviour
 {
     public static PlayerStatus playerStatus;
     public GameObject player;
+    
+    [SerializeField] StatPanel statPanel;
 
     public float effectSpeed;               //이펙트 속도
     public float animationSpeed;            //이펙트 애니메이션 재생 속도
 
-    [Header("플레이어의 레벨")]
+    [Header("Level")]
     [SerializeField] private Text m_Level;                   //플레이어의 레벨 텍스트
     [SerializeField] private int playerLevel;                //플레이어의 레벨
+
+    [Header("Stats")]
+    public CharacterStat damage;
+    public CharacterStat defense;
+    public CharacterStat tough;
+    public CharacterStat block;
+    public CharacterStat critical;
+    public CharacterStat criDamage;
+    public CharacterStat evade;
+    public CharacterStat moveSpeed;
+    public CharacterStat atkSpeed;
+    public CharacterStat reloadSpeed;
+    public CharacterStat dashDamage;
+    public CharacterStat trueDamage;
 
     private void Awake()
     {
@@ -37,6 +53,10 @@ public class PlayerStatus : MonoBehaviour
 
         m_Level = GameObject.Find("Level").GetComponent<Text>();
         playerLevel = 1;
+        
+        statPanel.SetStats(damage, defense, tough, block, critical, criDamage,
+            evade, moveSpeed, atkSpeed, reloadSpeed,dashDamage, trueDamage);
+        statPanel.UpdateStatValues();
     }
     private void Update()
     {

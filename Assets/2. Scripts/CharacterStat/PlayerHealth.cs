@@ -48,7 +48,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            //같은 몬스터가 많이 생성된다면 오브젝트 풀링으로 전환할 예정
             Destroy(player);
         }
     }

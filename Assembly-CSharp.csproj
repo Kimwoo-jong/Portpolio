@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{831773A5-BEB3-5D34-123F-103515187B12}</ProjectGuid>
+    <ProjectGuid>{418978B6-8643-DB35-7EEA-A27D51B62CCB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\2. Scripts\Camera\CameraFollow.cs" />
     <Compile Include="Assets\2. Scripts\CharacterPanel\ActivateSlotChange.cs" />
+    <Compile Include="Assets\2. Scripts\CharacterPanel\BaseItemSlot.cs" />
     <Compile Include="Assets\2. Scripts\CharacterPanel\Character.cs" />
     <Compile Include="Assets\2. Scripts\CharacterPanel\EquipmentPanel.cs" />
     <Compile Include="Assets\2. Scripts\CharacterPanel\EquipmentSlot.cs" />
@@ -81,13 +82,19 @@
     <Compile Include="Assets\2. Scripts\Etcs\JumpEffect.cs" />
     <Compile Include="Assets\2. Scripts\Etcs\SlashEffect.cs" />
     <Compile Include="Assets\2. Scripts\Etcs\SpawnDungeonInn.cs" />
+    <Compile Include="Assets\2. Scripts\FileIO\FileReadWrite.cs" />
+    <Compile Include="Assets\2. Scripts\FileIO\ItemDatabase.cs" />
+    <Compile Include="Assets\2. Scripts\FileIO\ItemSaveData.cs" />
+    <Compile Include="Assets\2. Scripts\FileIO\ItemSaveIO.cs" />
     <Compile Include="Assets\2. Scripts\Items\DropItemArea.cs" />
     <Compile Include="Assets\2. Scripts\Items\EquippableItem.cs" />
     <Compile Include="Assets\2. Scripts\Items\IItemContainer.cs" />
     <Compile Include="Assets\2. Scripts\Items\Item.cs" />
+    <Compile Include="Assets\2. Scripts\Items\ItemContainer.cs" />
     <Compile Include="Assets\2. Scripts\Items\QuestionDialog.cs" />
     <Compile Include="Assets\2. Scripts\Manager\BGMManager.cs" />
     <Compile Include="Assets\2. Scripts\Manager\CanvasManager.cs" />
+    <Compile Include="Assets\2. Scripts\Manager\ItemSaveManager.cs" />
     <Compile Include="Assets\2. Scripts\Player\PlayerAttack.cs" />
     <Compile Include="Assets\2. Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\2. Scripts\Player\PlayerMouseControl.cs" />

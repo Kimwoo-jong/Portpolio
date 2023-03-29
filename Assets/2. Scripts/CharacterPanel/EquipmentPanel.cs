@@ -3,62 +3,63 @@ using UnityEngine;
 
 public class EquipmentPanel : MonoBehaviour
 {
-    [SerializeField] Transform equipmentSlotsParent;
-    [SerializeField] EquipmentSlot[] equipmentSlots;
-    
-    [Header("Slot Change")]
-    [SerializeField] ActivateSlotChange[] activateSlots;
+	public EquipmentSlot[] EquipmentSlots;
+	[SerializeField] Transform equipmentSlotsParent;
 
-    public event Action<ItemSlot> OnPointerEnterEvent;
-    public event Action<ItemSlot> OnPointerExitEvent;
-    public event Action<ItemSlot> OnRightClickEvent;
-    public event Action<ItemSlot> OnBeginDragEvent;
-    public event Action<ItemSlot> OnDragEvent;
-    public event Action<ItemSlot> OnEndDragEvent;
-    public event Action<ItemSlot> OnDropEvent;
+	public event Action<BaseItemSlot> OnPointerEnterEvent;
+	public event Action<BaseItemSlot> OnPointerExitEvent;
+	public event Action<BaseItemSlot> OnRightClickEvent;
+	public event Action<BaseItemSlot> OnBeginDragEvent;
+	public event Action<BaseItemSlot> OnEndDragEvent;
+	public event Action<BaseItemSlot> OnDragEvent;
+	public event Action<BaseItemSlot> OnDropEvent;
 
-    private void Start()
-    {
-        for (int i = 0; i < equipmentSlots.Length; i++)
-        {
-            equipmentSlots[i].OnPointerEnterEvent += slot => OnPointerEnterEvent(slot);
-            equipmentSlots[i].OnPointerExitEvent += slot => OnPointerExitEvent(slot);
-            equipmentSlots[i].OnRightClickEvent += slot => OnRightClickEvent(slot);
-            equipmentSlots[i].OnBeginDragEvent += slot => OnBeginDragEvent(slot);
-            equipmentSlots[i].OnDragEvent += slot => OnDragEvent(slot);
-            equipmentSlots[i].OnEndDragEvent += slot => OnEndDragEvent(slot);
-            equipmentSlots[i].OnDropEvent += slot => OnDropEvent(slot);
-        }
-    }
+	private void Start()
+	{
+		for (int i = 0; i < EquipmentSlots.Length; i++)
+		{
+			EquipmentSlots[i].OnPointerEnterEvent += slot => OnPointerEnterEvent(slot);
+			EquipmentSlots[i].OnPointerExitEvent += slot => OnPointerExitEvent(slot);
+			EquipmentSlots[i].OnRightClickEvent += slot => OnRightClickEvent(slot);
+			EquipmentSlots[i].OnBeginDragEvent += slot => OnBeginDragEvent(slot);
+			EquipmentSlots[i].OnEndDragEvent += slot => OnEndDragEvent(slot);
+			EquipmentSlots[i].OnDragEvent += slot => OnDragEvent(slot);
+			EquipmentSlots[i].OnDropEvent += slot => OnDropEvent(slot);
+		}
+	}
 
-    private void OnValidate()
-    {
-        equipmentSlots = equipmentSlotsParent.GetComponentsInChildren<EquipmentSlot>();
-    }
-    public bool AddItem(EquippableItem item, out EquippableItem previousItem)
-    {
-        for (int i = 0; i < equipmentSlots.Length; i++)
-        {
-            if(equipmentSlots[i].equipmentType == item.equipmentType)
-            {
-                previousItem = (EquippableItem)equipmentSlots[i].Item;
-                equipmentSlots[i].Item = item;
-                return true;
-            }
-        }
-        previousItem = null;
-        return false;
-    }
-    public bool RemoveItem(EquippableItem item)
-    {
-        for (int i = 0; i < equipmentSlots.Length; i++)
-        {
-            if (equipmentSlots[i].Item == item)
-            {
-                equipmentSlots[i].Item = null;
-                return true;
-            }
-        }
-        return false;
-    }
+	private void OnValidate()
+	{
+		EquipmentSlots = equipmentSlotsParent.GetComponentsInChildren<EquipmentSlot>();
+	}
+
+	public bool AddItem(EquippableItem item, out EquippableItem previousItem)
+	{
+		for (int i = 0; i < EquipmentSlots.Length; i++)
+		{
+			if (EquipmentSlots[i].equipmentType == item.equipmentType)
+			{
+				previousItem = (EquippableItem)EquipmentSlots[i].Item;
+				EquipmentSlots[i].Item = item;
+				EquipmentSlots[i].Amount = 1;
+				return true;
+			}
+		}
+		previousItem = null;
+		return false;
+	}
+
+	public bool RemoveItem(EquippableItem item)
+	{
+		for (int i = 0; i < EquipmentSlots.Length; i++)
+		{
+			if (EquipmentSlots[i].Item == item)
+			{
+				EquipmentSlots[i].Item = null;
+				EquipmentSlots[i].Amount = 0;
+				return true;
+			}
+		}
+		return false;
+	}
 }

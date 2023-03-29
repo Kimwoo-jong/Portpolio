@@ -32,21 +32,40 @@ public class StatDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             nameText.text = _name;
         }
     }
+
+    private string _description;
+    public string Description
+    {
+        get
+        {
+            return _description;
+        }
+        set
+        {
+            _description = value;
+            descriptText.text = _description;
+        }
+    }
     public void UpdateStatValue()
     {
         valueText.text = _stat.Value.ToString();
     }
 
+    [SerializeField] Image statImage;
     [SerializeField] Text nameText;
     [SerializeField] Text valueText;
+    [SerializeField] Text descriptText;
     [SerializeField] StatToolTip tooltip;
 
     private void OnValidate()
     {
+        statImage = GetComponentInChildren<Image>();
+
         Text[] text = GetComponentsInChildren<Text>();
 
         nameText = text[0];
         valueText = text[1];
+        descriptText = text[2];
 
         if(tooltip == null)
         {
@@ -55,7 +74,7 @@ public class StatDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        tooltip.ShowTooltip(Stat, Name);
+        tooltip.ShowTooltip(Stat, Name, Description);
     }
 
     public void OnPointerExit(PointerEventData eventData)

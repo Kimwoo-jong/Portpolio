@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c211a9b3b97030747b800f44af570e67, type: 3}
+  m_Name: Heart of Cosmos
+  m_EditorClassIdentifier: 
+  id: 8522b95a45508db43b9ddf0958dc5f12
+  itemName: "\uC6B0\uC8FC\uC758 \uC2EC\uC7A5"
+  itemImage: {fileID: 21300000, guid: 5457d4fdcc65f8743912cbed688ced9b, type: 3}
+  m_ItemValue: 4
+  itemDescription: 
+  MaximumStacks: 1
+  m_damageBonus: 10
+  m_criticalBonus: 10
+  m_criDamageBonus: 10
+  m_dashDamageBonus: 0
+  m_trueDamageBonus: 0
+  m_defenseBonus: 10
+  m_toughBonus: 10
+  m_blockBonus: 10
+  m_evadeBonus: 10
+  m_atkSpdBonus: 0
+  m_moveSpdBonus: 0
+  m_reloadSpdBonus: 0
+  equipmentType: 6
+  weaponType: 2

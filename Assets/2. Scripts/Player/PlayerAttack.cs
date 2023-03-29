@@ -17,9 +17,12 @@ public class PlayerAttack : MonoBehaviour
     public Transform firePos;
     public GameObject slashEffect;
 
+    public GameObject weapon;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
+        weapon = GetComponentInChildren<BoxCollider2D>().gameObject;
         attackDelay = 0.25f;
     }
     void Update()
@@ -42,6 +45,7 @@ public class PlayerAttack : MonoBehaviour
         attacking = true;
         anim.SetBool("Attack", true);
         anim.SetInteger("Swing", m_swing);
+        Damage();
         
         StartCoroutine(DelayAttack());
     }
@@ -68,5 +72,9 @@ public class PlayerAttack : MonoBehaviour
     {
         //이펙트의 생성은 공격과 동시에
         Instantiate(slashEffect, firePos.position, firePos.rotation);
+    }
+    public void Damage()
+    {
+
     }
 }
