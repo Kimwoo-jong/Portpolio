@@ -91,6 +91,8 @@
     <Compile Include="Assets\2. Scripts\Items\IItemContainer.cs" />
     <Compile Include="Assets\2. Scripts\Items\Item.cs" />
     <Compile Include="Assets\2. Scripts\Items\ItemContainer.cs" />
+    <Compile Include="Assets\2. Scripts\Items\LootDrop.cs" />
+    <Compile Include="Assets\2. Scripts\Items\LootItems.cs" />
     <Compile Include="Assets\2. Scripts\Items\QuestionDialog.cs" />
     <Compile Include="Assets\2. Scripts\Manager\BGMManager.cs" />
     <Compile Include="Assets\2. Scripts\Manager\CanvasManager.cs" />
@@ -101,6 +103,8 @@
     <Compile Include="Assets\2. Scripts\Player\PlayerOnewayPlatform.cs" />
     <Compile Include="Assets\2. Scripts\Player\PlayerPhysics.cs" />
     <Compile Include="Assets\2. Scripts\Test\FrameChecker.cs" />
+    <Compile Include="Assets\2. Scripts\Test\ImageController.cs" />
+    <Compile Include="Assets\2. Scripts\Test\ResizeCollider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -4,12 +4,10 @@
 public class ItemSlotSaveData
 {
 	public string ItemID;
-	public int Amount;
 
-	public ItemSlotSaveData(string id, int amount)
+	public ItemSlotSaveData(string id)
 	{
 		ItemID = id;
-		Amount = amount;
 	}
 }
 

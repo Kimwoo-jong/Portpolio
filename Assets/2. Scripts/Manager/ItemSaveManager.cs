@@ -22,12 +22,10 @@ public class ItemSaveManager : MonoBehaviour
 			if (savedSlot == null)
 			{
 				itemSlot.Item = null;
-				itemSlot.Amount = 0;
 			}
 			else
 			{
 				itemSlot.Item = itemDatabase.GetItemCopy(savedSlot.ItemID);
-				itemSlot.Amount = savedSlot.Amount;
 			}
 		}
 	}
@@ -74,7 +72,7 @@ public class ItemSaveManager : MonoBehaviour
 			}
 			else
 			{
-				saveData.SavedSlots[i] = new ItemSlotSaveData(itemSlot.Item.ID, itemSlot.Amount);
+				saveData.SavedSlots[i] = new ItemSlotSaveData(itemSlot.Item.ID);
 			}
 		}
 

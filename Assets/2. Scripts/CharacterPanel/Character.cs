@@ -25,26 +25,25 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        // Setup Events:
-        // Right Click
+        //우클릭
         Inventory.OnRightClickEvent += InventoryRightClick;
         EquipmentPanel.OnRightClickEvent += EquipmentPanelRightClick;
-        // Pointer Enter
+        //마우스 포인터 올렸을 때
         Inventory.OnPointerEnterEvent += ShowTooltip;
         EquipmentPanel.OnPointerEnterEvent += ShowTooltip;
-        // Pointer Exit
+        //마우스 포인터 나갔을 때
         Inventory.OnPointerExitEvent += HideTooltip;
         EquipmentPanel.OnPointerExitEvent += HideTooltip;
-        // Begin Drag
+        //드래그 시작
         Inventory.OnBeginDragEvent += BeginDrag;
         EquipmentPanel.OnBeginDragEvent += BeginDrag;
-        // End Drag
+        //드래그 종료
         Inventory.OnEndDragEvent += EndDrag;
         EquipmentPanel.OnEndDragEvent += EndDrag;
-        // Drag
+        //드래그 중
         Inventory.OnDragEvent += Drag;
         EquipmentPanel.OnDragEvent += Drag;
-        // Drop
+        //드롭
         Inventory.OnDropEvent += Drop;
         EquipmentPanel.OnDropEvent += Drop;
         dropItemArea.OnDropEvent += DropItemOutsideUI;
@@ -119,23 +118,10 @@ public class Character : MonoBehaviour
     {
         if (dragItemSlot == null) return;
 
-        if (dropItemSlot.CanAddStack(dragItemSlot.Item))
-        {
-            AddStacks(dropItemSlot);
-        }
         else if (dropItemSlot.CanReceiveItem(dragItemSlot.Item) && dragItemSlot.CanReceiveItem(dropItemSlot.Item))
         {
             SwapItems(dropItemSlot);
         }
-    }
-
-    private void AddStacks(BaseItemSlot dropItemSlot)
-    {
-        int numAddableStacks = dropItemSlot.Item.MaximumStacks - dropItemSlot.Amount;
-        int stacksToAdd = Mathf.Min(numAddableStacks, dragItemSlot.Amount);
-
-        dropItemSlot.Amount += stacksToAdd;
-        dragItemSlot.Amount -= stacksToAdd;
     }
 
     private void SwapItems(BaseItemSlot dropItemSlot)
@@ -156,13 +142,10 @@ public class Character : MonoBehaviour
         statPanel.UpdateStatValues();
 
         Item draggedItem = dragItemSlot.Item;
-        int draggedItemAmount = dragItemSlot.Amount;
 
         dragItemSlot.Item = dropItemSlot.Item;
-        dragItemSlot.Amount = dropItemSlot.Amount;
 
         dropItemSlot.Item = draggedItem;
-        dropItemSlot.Amount = draggedItemAmount;
     }
 
     private void DropItemOutsideUI()
@@ -218,66 +201,5 @@ public class Character : MonoBehaviour
             statPanel.UpdateStatValues();
             Inventory.AddItem(item);
         }
-    }
-
-    private ItemContainer openItemContainer;
-
-    private void TransferToItemContainer(BaseItemSlot itemSlot)
-    {
-        Item item = itemSlot.Item;
-        if (item != null && openItemContainer.CanAddItem(item))
-        {
-            Inventory.RemoveItem(item);
-            openItemContainer.AddItem(item);
-        }
-    }
-
-    private void TransferToInventory(BaseItemSlot itemSlot)
-    {
-        Item item = itemSlot.Item;
-        if (item != null && Inventory.CanAddItem(item))
-        {
-            openItemContainer.RemoveItem(item);
-            Inventory.AddItem(item);
-        }
-    }
-
-    public void OpenItemContainer(ItemContainer itemContainer)
-    {
-        openItemContainer = itemContainer;
-
-        Inventory.OnRightClickEvent -= InventoryRightClick;
-        Inventory.OnRightClickEvent += TransferToItemContainer;
-
-        itemContainer.OnRightClickEvent += TransferToInventory;
-
-        itemContainer.OnPointerEnterEvent += ShowTooltip;
-        itemContainer.OnPointerExitEvent += HideTooltip;
-        itemContainer.OnBeginDragEvent += BeginDrag;
-        itemContainer.OnEndDragEvent += EndDrag;
-        itemContainer.OnDragEvent += Drag;
-        itemContainer.OnDropEvent += Drop;
-    }
-
-    public void CloseItemContainer(ItemContainer itemContainer)
-    {
-        openItemContainer = null;
-
-        Inventory.OnRightClickEvent += InventoryRightClick;
-        Inventory.OnRightClickEvent -= TransferToItemContainer;
-
-        itemContainer.OnRightClickEvent -= TransferToInventory;
-
-        itemContainer.OnPointerEnterEvent -= ShowTooltip;
-        itemContainer.OnPointerExitEvent -= HideTooltip;
-        itemContainer.OnBeginDragEvent -= BeginDrag;
-        itemContainer.OnEndDragEvent -= EndDrag;
-        itemContainer.OnDragEvent -= Drag;
-        itemContainer.OnDropEvent -= Drop;
-    }
-
-    public void UpdateStatValues()
-    {
-        statPanel.UpdateStatValues();
     }
 }
