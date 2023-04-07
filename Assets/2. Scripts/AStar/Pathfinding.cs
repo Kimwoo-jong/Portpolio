@@ -14,14 +14,14 @@ public class Pathfinding : MonoBehaviour
         grid = GetComponent<Grid2D>();
     }
 
-    public void StartFindPath(Vector3 startPos, Vector3 endPos)
+    public void StartFindPath(Vector2 startPos, Vector2 endPos)
     {
         StartCoroutine(FindPath(startPos, endPos));
     }
 
-    IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
+    IEnumerator FindPath(Vector2 startPos, Vector2 targetPos)
     {
-        Vector3[] wayPoints = new Vector3[0];
+        Vector2[] wayPoints = new Vector2[0];
         bool pathSuccess = false;
 
         Node startNode = grid.NodeFromWorldPoint(startPos);
@@ -63,6 +63,7 @@ public class Pathfinding : MonoBehaviour
                         continue;
                     }
 
+                    int newMovementCostToNeighbour = node.gCost + GetDistance(node, neighbour) + neighbour.movementPenalty;
                     int newCostToNeighbour = node.gCost + GetDistance(node, neighbour);
                     if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
                     {
@@ -89,7 +90,7 @@ public class Pathfinding : MonoBehaviour
         requestManager.FinishedProcessingPath(wayPoints, pathSuccess);
     }
 
-    Vector3[] RetracePath(Node startNode, Node endNode)
+    Vector2[] RetracePath(Node startNode, Node endNode)
     {
         List<Node> path = new List<Node>();
         Node currentNode = endNode;
@@ -100,22 +101,22 @@ public class Pathfinding : MonoBehaviour
             currentNode = currentNode.parent;
         }
 
-        Vector3[] wayPoints = SimplifyPath(path);
+        Vector2[] wayPoints = SimplifyPath(path);
         Array.Reverse(wayPoints);
 
         return wayPoints;
     }
 
-    Vector3[] SimplifyPath(List<Node> path)
+    Vector2[] SimplifyPath(List<Node> path)
     {
-        List<Vector3> waypoints = new List<Vector3>();
+        List<Vector2> waypoints = new List<Vector2>();
         Vector2 directionOld = Vector2.zero;
 
         for (int i = 1; i < path.Count; i++)
         {
             Vector2 directionNew = new Vector2(path[i - 1].gridX - path[i].gridX, path[i - 1].gridY - path[i].gridY);
 
-            if(directionNew != directionOld)
+            if (directionNew != directionOld)
             {
                 waypoints.Add(path[i].worldPosition);
             }
@@ -126,11 +127,15 @@ public class Pathfinding : MonoBehaviour
 
     int GetDistance(Node nodeA, Node nodeB)
     {
+        //대각 이동을 제한하고 4방향 이동만 하고 싶다면 맨해튼 거리 공식을 사용
+        //h = Mathf.Abs(start.gridX - end.gridX) + Mathf.Abs(start.gridY - end.gridY);
         int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
         int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
 
         if (dstX > dstY)
             return 14 * dstY + 10 * (dstX - dstY);
+
         return 14 * dstX + 10 * (dstY - dstX);
+        //return dstX + dstY;
     }
 }

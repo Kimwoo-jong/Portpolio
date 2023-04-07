@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;                    //플레이어가 땅에 닿아 있는지 확인
 
     public LayerMask groundLayer;
+    public LayerMask platformLayer;
     public Transform groundCheck;
     public float groundCheckRadius;
 
@@ -99,6 +100,10 @@ public class PlayerController : MonoBehaviour
     {
         //원을 그려서 땅에 닿아있는지 확인
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        if(!isGrounded)
+        {
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, platformLayer);
+        }
     }
     private void Jump()
     {

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerOnewayPlatform : MonoBehaviour
 {
-    private GameObject currentOnewayPlatform;
-
+    [SerializeField] private GameObject currentOnewayPlatform;
     [SerializeField] private CapsuleCollider2D player;
 
     private void Start()
@@ -40,7 +39,7 @@ public class PlayerOnewayPlatform : MonoBehaviour
     }
     private IEnumerator DisableCollision()
     {
-        BoxCollider2D platformCollider = currentOnewayPlatform.GetComponent<BoxCollider2D>();
+        Collider2D platformCollider = currentOnewayPlatform.GetComponent<Collider2D>();
 
         Physics2D.IgnoreCollision(player, platformCollider, true);
 

@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    private SpriteRenderer sprite;
     public Transform target;
     float speed = 1;
-    Vector3[] path;
+    Vector2[] path;
     int targetIndex;
 
     private void Start() {
+        sprite = GetComponent<SpriteRenderer>();
+        target = GameObject.Find("Player").transform;
     }
 
-    public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
+    private void Update() {
+        //오브젝트의 위치가 우측으로 가는 중이면 FlipX
+        //아닐 경우 그대로
+    }
+
+    public void OnPathFound(Vector2[] newPath, bool pathSuccessful)
     {
         if(pathSuccessful)
         {
@@ -24,11 +32,11 @@ public class Unit : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        Vector3 currentWaypoint = path[0];
+        Vector2 currentWaypoint = path[0];
 
         while(true)
         {
-            if(transform.position == currentWaypoint)
+            if((Vector2)transform.position == currentWaypoint)
             {
                 targetIndex++;
 
@@ -39,7 +47,7 @@ public class Unit : MonoBehaviour
                 currentWaypoint = path[targetIndex];
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
             yield return null;
         }
     }
@@ -50,8 +58,8 @@ public class Unit : MonoBehaviour
         {
             for(int i= targetIndex; i < path.Length; i++)
             {
-                Gizmos.color = Color.black;
-                Gizmos.DrawCube(path[i], Vector3.one);
+                Gizmos.color = Color.magenta;
+                Gizmos.DrawCube(path[i], Vector2.one);
 
                 if(i == targetIndex)
                 {
