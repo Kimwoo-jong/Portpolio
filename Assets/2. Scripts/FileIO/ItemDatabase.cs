@@ -34,6 +34,7 @@ public class ItemDatabase : ScriptableObject
 
 	private void OnEnable()
 	{
+        EditorApplication.projectChanged -= LoadItems;
 		EditorApplication.projectChanged += LoadItems;
 	}
 

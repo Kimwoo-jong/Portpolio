@@ -35,7 +35,7 @@ TagManager:
   - Player
   - Enemy
   - Items
-  - 
+  - TileMap
   - 
   - 
   - 
@@ -61,12 +61,12 @@ TagManager:
   - name: UI
     uniqueID: 2631680195
     locked: 0
+  - name: Objects
+    uniqueID: 2321271431
+    locked: 0
   - name: Enemy
     uniqueID: 3056689413
     locked: 0
   - name: Player
     uniqueID: 3169874013
-    locked: 0
-  - name: Objects
-    uniqueID: 2321271431
     locked: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c211a9b3b97030747b800f44af570e67, type: 3}
   m_Name: ShortSword
   m_EditorClassIdentifier: 
-  id: 25c46b100797c7444b28643ddceb11dc
+  id: 4d18e245cb396a34bb676b0e2dea75f9
   itemName: "\uC20F\uC18C\uB4DC"
   itemImage: {fileID: 21300000, guid: e6cae007dd418434c884d41200b17d19, type: 3}
   m_ItemValue: 0

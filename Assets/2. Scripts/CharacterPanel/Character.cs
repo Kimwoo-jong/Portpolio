@@ -48,14 +48,20 @@ public class Character : MonoBehaviour
         EquipmentPanel.OnDropEvent += Drop;
         dropItemArea.OnDropEvent += DropItemOutsideUI;
 
-        itemSaveManager.LoadEquipment(this);
-        itemSaveManager.LoadInventory(this);
+        if(itemSaveManager != null)
+        {
+            itemSaveManager.LoadEquipment(this);
+            itemSaveManager.LoadInventory(this);
+        }
     }
 
     private void OnDestroy()
     {
-        itemSaveManager.SaveEquipment(this);
-        itemSaveManager.SaveInventory(this);
+        if(itemSaveManager != null)
+        {
+            itemSaveManager.SaveEquipment(this);
+            itemSaveManager.SaveInventory(this);
+        }
     }
 
     private void InventoryRightClick(BaseItemSlot itemSlot)
@@ -183,6 +189,7 @@ public class Character : MonoBehaviour
                     previousItem.UnEquip(PlayerStatus.playerStatus);
                     statPanel.UpdateStatValues();
                 }
+
                 item.Equip(PlayerStatus.playerStatus);
                 statPanel.UpdateStatValues();
             }

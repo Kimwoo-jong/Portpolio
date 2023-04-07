@@ -36,33 +36,37 @@ public abstract class ItemContainer : MonoBehaviour, IItemContainer
 		if (action != null)
 			action(itemSlot);
 	}
-	public virtual bool CanAddItem(Item item)
+	public virtual bool CanAddItem(Item item, int amount = 1)
 	{
+		int freeSpaces = 0;
+
 		foreach (ItemSlot itemSlot in ItemSlots)
 		{
 			if (itemSlot.Item == null || itemSlot.Item.ID == item.ID)
 			{
-				return true;
+				freeSpaces += item.MaximumStacks - itemSlot.Amount;
 			}
 		}
-		return false;
+		return freeSpaces >= amount;
 	}
 	public virtual bool AddItem(Item item)
 	{
-		for (int i = 0; i < ItemSlots.Count; i++)
-		{
-			if (ItemSlots[i].CanAddStack(item))
-			{
-				ItemSlots[i].Item = item;
-				return true;
-			}
-		}
+        for (int i = 0; i < ItemSlots.Count; i++)
+        {
+            if (ItemSlots[i].CanAddStack(item))
+            {
+                ItemSlots[i].Item = item;
+                ItemSlots[i].Amount++;
+                return true;
+            }
+        }
 
 		for (int i = 0; i < ItemSlots.Count; i++)
 		{
 			if (ItemSlots[i].Item == null)
 			{
 				ItemSlots[i].Item = item;
+                ItemSlots[i].Amount++;
 				return true;
 			}
 		}
@@ -74,6 +78,7 @@ public abstract class ItemContainer : MonoBehaviour, IItemContainer
 		{
 			if (ItemSlots[i].Item == item)
 			{
+                ItemSlots[i].Amount--;
 				return true;
 			}
 		}
@@ -86,6 +91,7 @@ public abstract class ItemContainer : MonoBehaviour, IItemContainer
 			Item item = ItemSlots[i].Item;
 			if (item != null && item.ID == itemID)
 			{
+                ItemSlots[i].Amount--;
 				return item;
 			}
 		}
@@ -100,6 +106,7 @@ public abstract class ItemContainer : MonoBehaviour, IItemContainer
 				ItemSlots[i].Item.Destroy();
 			}
 			ItemSlots[i].Item = null;
+            ItemSlots[i].Amount = 0;
 		}
 	}
 }

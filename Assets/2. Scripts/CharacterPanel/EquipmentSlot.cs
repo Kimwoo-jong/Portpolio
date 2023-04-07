@@ -16,6 +16,5 @@
 
         EquippableItem equippableItem = item as EquippableItem;
         return equippableItem != null && equippableItem.equipmentType == equipmentType;
-
     }
 }

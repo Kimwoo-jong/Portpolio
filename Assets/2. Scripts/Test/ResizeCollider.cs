@@ -5,6 +5,7 @@
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
 //스프라이트의 크기에 맞추어 박스콜라이더 크기를 변경하기 위한 스크립트
+//스프라이트 크기에 맞추면 
 public class ResizeCollider : MonoBehaviour
 {
     private void Start()
@@ -14,7 +15,7 @@ public class ResizeCollider : MonoBehaviour
 
         if (spriteRenderer != null && boxCollider != null)
         {
-            boxCollider.size = spriteRenderer.bounds.size;
+            boxCollider.size = new Vector2(0.25f, 0.1f);
         }
     }
 }

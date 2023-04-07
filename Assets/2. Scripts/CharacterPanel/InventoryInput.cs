@@ -6,6 +6,11 @@ public class InventoryInput : MonoBehaviour
     [SerializeField] GameObject inventoryPanelGO;
     [SerializeField] KeyCode[] toggleCharacterPanelKeys;
 
+    private void Awake()
+    {
+        //처음에 한 번 활성화 시켜줘야 인벤토리에 아이템이 들어간다.
+        inventoryPanelGO.SetActive(true);
+    }
     private void Start()
     {
         //게임 시작시에는 패널을 비활성화인 채로 시작
@@ -15,12 +20,12 @@ public class InventoryInput : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(toggleCharacterPanelKeys[0]))
+        if (Input.GetKeyDown(toggleCharacterPanelKeys[0]))
         {
             ToggleStatPanel();
         }
 
-        if(Input.GetKeyDown(toggleCharacterPanelKeys[1]))
+        if (Input.GetKeyDown(toggleCharacterPanelKeys[1]))
         {
             ToggleEquipmentPanel();
         }

@@ -15,45 +15,42 @@ public class LootItems : MonoBehaviour
 
     private void Start()
     {
-        inventory = GameObject.Find("CharacterPanel").transform.Find("Inventory").GetComponent<Inventory>();
+        inventory = GameObject.Find("CharacterPanel").transform.Find("Inventory").GetComponentInChildren<Inventory>();
         goldText = inventory.transform.GetChild(3).GetComponentInChildren<Text>();
     }
 
-    private void Update()
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        StartCoroutine(ItemSpawn());
+        if (col.gameObject.CompareTag("Player"))
+        {
+            isInRange = true;
+            TriggerOn();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Player"))
+        if(col.CompareTag("Player"))
         {
-            isInRange = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.CompareTag("Player"))
-        {
-            isInRange = false;
+            ItemPickUp();
         }
     }
 
-    private IEnumerator ItemSpawn()
+    private void TriggerOn()
     {
-        yield return new WaitForSeconds(1.0f);
+        Rigidbody2D rigid = GetComponent<Rigidbody2D>();
+        BoxCollider2D box = GetComponent<BoxCollider2D>();
 
+        rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+        box.isTrigger = true;
+    }
+
+    private void ItemPickUp()
+    {
         if (isInRange)
         {
             if (item != null)
             {
-                if(item.itemDescription == "금괴")
-                {
-                    gold += 100;
-
-                    goldText.text = gold.ToString();
-                }
-
                 inventory.AddItem(item);
                 item = null;
                 Destroy(gameObject);

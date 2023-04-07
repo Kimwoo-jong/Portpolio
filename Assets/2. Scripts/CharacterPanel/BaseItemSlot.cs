@@ -43,7 +43,19 @@ public class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 		}
 	}
 
-	public virtual bool CanAddStack(Item item)
+    private int _amount;
+    public int Amount
+    {
+        get { return _amount; }
+        set
+        {
+            _amount = value;
+            if (_amount < 0) _amount = 0;
+            if (_amount == 0 && Item != null) Item = null;
+        }
+    }
+
+	public virtual bool CanAddStack(Item item, int amount = 1)
 	{
 		return Item != null && Item.ID == item.ID;
 	}
