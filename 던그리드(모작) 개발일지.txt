@@ -54,7 +54,7 @@ Canvas를 활용하여 맵의 바닥 어두운 부분에 튜토리얼용 키보�
 
 그라운드 체크는 Layer로 트리거, 콜라이더 체크는 태그로 하는 방식으로 활용함.
 
-던전 입구 리소스 추출 
+던전 입구
 >> 트리거에 닿을 시 애니메이션 실행과 함께 Player 비활성화 및 다음 씬 로드
 
 점프가 다시 두 번되서 코드 수정
@@ -78,7 +78,7 @@ float pushForce = playerMass * playerGravity;
 float frictionForce = playerFriction * playerMass * playerGravity;
 
 하나의 코드에 모든 기능이 구현되니 코드가 지저분해보임.
->> 모듈화 실행
+>> 코드 분할 실행
 >> 플레이어의 이동, 점프를 담당하는 PlayerController
 >> 플레이어의 물리 시뮬레이션을 담당하는 PlayerPhysics
 >> 차후 추가되는 부분이 있을 시 추가할 예정
