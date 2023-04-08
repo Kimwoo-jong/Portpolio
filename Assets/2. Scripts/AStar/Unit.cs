@@ -18,6 +18,20 @@ public class Unit : MonoBehaviour
     private void Update() {
         //오브젝트의 위치가 우측으로 가는 중이면 FlipX
         //아닐 경우 그대로
+        CheckCurrentGrid();
+    }
+
+    void CheckCurrentGrid()
+    {
+        //시작점이 목표보다 우측에 있을 경우
+        if(transform.position.x > target.position.x)
+        {
+            sprite.flipX = true;
+        }
+        else
+        {
+            sprite.flipX = false;
+        }
     }
 
     public void OnPathFound(Vector2[] newPath, bool pathSuccessful)
@@ -59,7 +73,7 @@ public class Unit : MonoBehaviour
             for(int i= targetIndex; i < path.Length; i++)
             {
                 Gizmos.color = Color.magenta;
-                Gizmos.DrawCube(path[i], Vector2.one);
+                Gizmos.DrawCube(path[i], Vector2.one * 0.25f);
 
                 if(i == targetIndex)
                 {
