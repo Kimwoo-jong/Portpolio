@@ -19,6 +19,8 @@ public class Grid2D : MonoBehaviour
     LayerMask walkableMask;                                     //걸을 수 있는 레이어
     Dictionary<int, int> walkableRegionsDictionary = new Dictionary<int, int>();
 
+
+
     Node[,] grid;
 
     float nodeDiameter;
@@ -45,9 +47,9 @@ public class Grid2D : MonoBehaviour
         Vector2 worldBottomLeft = (Vector2)transform.position - Vector2.right * gridWorldSize.x / 2
                                                             - Vector2.up * gridWorldSize.y / 2;
 
-        for (int x = 0; x < gridSizeX; x++)
+        for (int x = 0; x < gridSizeX; ++x)
         {
-            for (int y = 0; y < gridSizeY; y++)
+            for (int y = 0; y < gridSizeY; ++y)
             {
                 Vector2 worldPoint = worldBottomLeft + Vector2.right * (x * nodeDiameter + nodeRadius)
                                                      + Vector2.up * (y * nodeDiameter + nodeRadius);
@@ -96,8 +98,8 @@ public class Grid2D : MonoBehaviour
 
     public Node NodeFromWorldPoint(Vector2 worldPosition)
     {
-        float percentX = (worldPosition.x + gridWorldSize.x / 5) / gridWorldSize.x;
-        float percentY = (worldPosition.y + gridWorldSize.y / 4.5f) / gridWorldSize.y;
+        float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
+        float percentY = (worldPosition.y + gridWorldSize.y / 2) / gridWorldSize.y;
 
         percentX = Mathf.Clamp01(percentX);
         percentY = Mathf.Clamp01(percentY);
