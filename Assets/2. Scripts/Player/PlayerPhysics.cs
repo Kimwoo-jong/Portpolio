@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerPhysics : MonoBehaviour
 {
@@ -59,7 +60,7 @@ public class PlayerPhysics : MonoBehaviour
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(groundCheck.position, Vector2.down, slopeRayLength, groundLayer);
 
-        if(hitInfo)
+        if (hitInfo)
         {
             slopeAngle = Vector2.Angle(hitInfo.normal, Vector2.up);
             slopeDirection = Vector2.Perpendicular(hitInfo.normal).normalized;
@@ -104,5 +105,33 @@ public class PlayerPhysics : MonoBehaviour
             rigid.constraints = RigidbodyConstraints2D.FreezePositionX
                               | RigidbodyConstraints2D.FreezeRotation;
         }
+    }
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Gate"))
+        {
+            maxSpeed = 0;
+            rigid.mass = 20;
+        }
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        //Level1일 때
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            GameObject playerSpawn = GameObject.Find("PlayerSpawner");
+
+            gameObject.transform.position = playerSpawn.transform.position;
+            maxSpeed = 5;
+            rigid.mass = 1;
+        }
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

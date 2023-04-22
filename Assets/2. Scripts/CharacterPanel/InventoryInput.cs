@@ -4,6 +4,7 @@ public class InventoryInput : MonoBehaviour
 {
     [SerializeField] GameObject statPanelGO;
     [SerializeField] GameObject inventoryPanelGO;
+    [SerializeField] GameObject statTooltipGO;
     [SerializeField] KeyCode[] toggleCharacterPanelKeys;
 
     private void Awake()
@@ -33,6 +34,7 @@ public class InventoryInput : MonoBehaviour
     public void ToggleStatPanel()
     {
         statPanelGO.SetActive(!statPanelGO.activeSelf);
+        statTooltipGO.SetActive(false);
     }
     public void ToggleEquipmentPanel()
     {

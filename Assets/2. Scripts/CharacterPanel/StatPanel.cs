@@ -11,8 +11,9 @@ public class StatPanel : MonoBehaviour
 	private void OnValidate()
 	{
 		statDisplays = GetComponentsInChildren<StatDisplay>();
-		UpdateStatNames();
-		UpdateStatDescription();
+		//유니티 에디터에서만 호출되는 함수(확인용)
+		//UpdateStatNames();
+		//UpdateStatDescription();
 	}
 
 	public void SetStats(params CharacterStat[] charStats)

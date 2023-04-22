@@ -14,7 +14,7 @@ public class PlayerOnewayPlatform : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             if (currentOnewayPlatform != null)
             {
@@ -25,17 +25,17 @@ public class PlayerOnewayPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.CompareTag("Platform"))
+        if (col.gameObject.CompareTag("Platform"))
         {
             currentOnewayPlatform = col.gameObject;
         }
     }
     private void OnCollisionExit2D(Collision2D col)
     {
-        if(col.gameObject.CompareTag("Platform"))
+        if (col.gameObject.CompareTag("Platform"))
         {
             currentOnewayPlatform = null;
-        }    
+        }
     }
     private IEnumerator DisableCollision()
     {

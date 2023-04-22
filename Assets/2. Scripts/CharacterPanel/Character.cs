@@ -54,6 +54,11 @@ public class Character : MonoBehaviour
             itemSaveManager.LoadInventory(this);
         }
     }
+    private void LateUpdate()
+    {
+        statPanel.UpdateStatNames();
+        statPanel.UpdateStatDescription();
+    }
 
     private void OnDestroy()
     {

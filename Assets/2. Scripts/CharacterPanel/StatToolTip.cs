@@ -11,6 +11,8 @@ public class StatToolTip : MonoBehaviour
     [SerializeField] Text statDescription;
 
     private StringBuilder sb = new StringBuilder();
+    private string statName;
+    private string statDesc;
 
     public void ShowTooltip(CharacterStat stat, string statName, string statdescription)
     {
@@ -24,12 +26,11 @@ public class StatToolTip : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    private string GetStatsName(CharacterStat stat, string statName)
+    private string GetStatsName(CharacterStat stat, string _statName)
     {
-        sb.Length = 0;
-        sb.Append(statName);
+        statName = _statName;
 
-        return sb.ToString();
+        return statName;
     }
     private string GetStatModifiersText(CharacterStat stat)
     {
@@ -62,10 +63,8 @@ public class StatToolTip : MonoBehaviour
     //방어, 막기, 크리티컬 확률, 회피를 제외한 나머지 스탯은 추가 텍스트가 뜨지 않는다.
     private string GetStatDescription(string description)
     {
-        sb.Length = 0;
+        statDesc = description;
 
-        sb.Append(description);
-
-        return sb.ToString();
+        return statDesc;
     }
 }

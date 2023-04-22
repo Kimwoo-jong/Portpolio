@@ -29,7 +29,7 @@ public class StatDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         set
         {
             _name = value;
-            nameText.text = _name;
+            UpdateStatName();
         }
     }
 
@@ -43,12 +43,20 @@ public class StatDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         set
         {
             _description = value;
-            descriptText.text = _description;
+            UpdateStatDesc();
         }
     }
     public void UpdateStatValue()
     {
         valueText.text = _stat.Value.ToString();
+    }
+    public void UpdateStatName()
+    {
+        nameText.text = _name;
+    }
+    public void UpdateStatDesc()
+    {
+        descriptText.text = _description;
     }
 
     [SerializeField] Image statImage;

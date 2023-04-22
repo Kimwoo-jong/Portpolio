@@ -7,7 +7,7 @@ public class DungeonInn : MonoBehaviour
 {
     private Animator anim;
     private bool isPlayerIn;
-    
+
     [SerializeField] private GameObject player;                      //플레이어
 
     private void Start()
@@ -19,7 +19,7 @@ public class DungeonInn : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag == "Player" && !isPlayerIn)
+        if (col.gameObject.tag == "Player" && !isPlayerIn)
         {
             StartCoroutine("PlayerTouchTrigger");
         }
@@ -35,7 +35,8 @@ public class DungeonInn : MonoBehaviour
     IEnumerator AnimEndLoadScene()
     {
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(2);
+        player.SetActive(true);
+        SceneManager.LoadScene(3);
     }
     IEnumerator PlayerTouchTrigger()
     {

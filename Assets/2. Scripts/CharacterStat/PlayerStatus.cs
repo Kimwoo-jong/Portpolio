@@ -57,6 +57,8 @@ public class PlayerStatus : MonoBehaviour
         statPanel.SetStats(damage, defense, tough, block, critical, criDamage,
             evade, moveSpeed, atkSpeed, reloadSpeed,dashDamage, trueDamage);
         statPanel.UpdateStatValues();
+        statPanel.UpdateStatNames();
+        statPanel.UpdateStatDescription();
     }
     private void Update()
     {
