@@ -48,11 +48,11 @@ public class Character : MonoBehaviour
         EquipmentPanel.OnDropEvent += Drop;
         dropItemArea.OnDropEvent += DropItemOutsideUI;
 
-        if(itemSaveManager != null)
-        {
-            itemSaveManager.LoadEquipment(this);
-            itemSaveManager.LoadInventory(this);
-        }
+        // if(itemSaveManager != null)
+        // {
+        //     itemSaveManager.LoadEquipment(this);
+        //     itemSaveManager.LoadInventory(this);
+        // }
     }
     private void LateUpdate()
     {
@@ -60,14 +60,14 @@ public class Character : MonoBehaviour
         statPanel.UpdateStatDescription();
     }
 
-    private void OnDestroy()
-    {
-        if(itemSaveManager != null)
-        {
-            itemSaveManager.SaveEquipment(this);
-            itemSaveManager.SaveInventory(this);
-        }
-    }
+    // private void OnDestroy()
+    // {
+    //     if(itemSaveManager != null)
+    //     {
+    //         itemSaveManager.SaveEquipment(this);
+    //         itemSaveManager.SaveInventory(this);
+    //     }
+    // }
 
     private void InventoryRightClick(BaseItemSlot itemSlot)
     {
@@ -150,7 +150,7 @@ public class Character : MonoBehaviour
             if (dragEquipItem != null) dragEquipItem.UnEquip(PlayerStatus.playerStatus);
             if (dropEquipItem != null) dropEquipItem.Equip(PlayerStatus.playerStatus);
         }
-        statPanel.UpdateStatValues();
+        statPanel.UpdateStatsValues();
 
         Item draggedItem = dragItemSlot.Item;
 
@@ -192,11 +192,11 @@ public class Character : MonoBehaviour
                 {
                     Inventory.AddItem(previousItem);
                     previousItem.UnEquip(PlayerStatus.playerStatus);
-                    statPanel.UpdateStatValues();
+                    statPanel.UpdateStatsValues();
                 }
 
                 item.Equip(PlayerStatus.playerStatus);
-                statPanel.UpdateStatValues();
+                statPanel.UpdateStatsValues();
             }
             else
             {
@@ -210,7 +210,7 @@ public class Character : MonoBehaviour
         if (Inventory.CanAddItem(item) && EquipmentPanel.RemoveItem(item))
         {
             item.UnEquip(PlayerStatus.playerStatus);
-            statPanel.UpdateStatValues();
+            statPanel.UpdateStatsValues();
             Inventory.AddItem(item);
         }
     }

@@ -37,7 +37,7 @@ public class StatPanel : MonoBehaviour
 		}
 	}
 	//스탯의 값
-	public void UpdateStatValues()
+	public void UpdateStatsValues()
 	{
 		for (int i = 0; i < stats.Length; i++)
 		{
