@@ -34,9 +34,9 @@ public class DungeonInn : MonoBehaviour
     }
     IEnumerator AnimEndLoadScene()
     {
-        yield return new WaitForSeconds(1.5f);
-        player.SetActive(true);
         SceneManager.LoadScene(3);
+        player.SetActive(true);
+        yield return null;
     }
     IEnumerator PlayerTouchTrigger()
     {

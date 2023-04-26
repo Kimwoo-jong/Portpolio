@@ -172,7 +172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4783490633625301675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 4783490633885794441}
@@ -306,9 +306,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  platformLayer:
-    serializedVersion: 2
-    m_Bits: 0
   groundCheck: {fileID: 4783490634765314881}
   groundCheckRadius: 0.3
   playerEffect: {fileID: 0}
@@ -359,10 +356,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4783490633625301675}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f41496f44cbca448514346eaeed415, type: 3}
+  m_Script: {fileID: 11500000, guid: 04c6b95b70b0c0349bbfb002fc3617ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4783490633625301675}
+  player: {fileID: 0}
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
   health: 0
@@ -489,6 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393b5a8ab8d53c841ba37511da786b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: {fileID: 0}
   attacking: 0
   upperSwing: 0
   attackDelay: 0.75

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private Animator anim;
+    private PlayerHealth playerHealth;
 
     [Header("플레이어 공격")]
     [SerializeField] private bool attacking = false;
@@ -23,11 +24,11 @@ public class PlayerAttack : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         weapon = GetComponentInChildren<BoxCollider2D>().gameObject;
+        playerHealth = GetComponentInParent<PlayerHealth>();
         attackDelay = 0.25f;
     }
-    void Update()
+    private void Update()
     {
-
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
@@ -41,19 +42,7 @@ public class PlayerAttack : MonoBehaviour
         }
 
         AnimControl();
-
-        attacking = true;
-        anim.SetBool("Attack", true);
-        anim.SetInteger("Swing", m_swing);
-        Damage();
-        
-        StartCoroutine(DelayAttack());
-    }
-    private IEnumerator DelayAttack()
-    {
-        yield return new WaitForSeconds(attackDelay);
-        attacking = false;
-        anim.SetBool("Attack", false);
+        StartCoroutine(CorAttack());
     }
     private void AnimControl()
     {
@@ -73,8 +62,15 @@ public class PlayerAttack : MonoBehaviour
         //이펙트의 생성은 공격과 동시에
         Instantiate(slashEffect, firePos.position, firePos.rotation);
     }
-    public void Damage()
+    private IEnumerator CorAttack()
     {
+        attacking = true;
+        anim.SetBool("Attack", true);
+        anim.SetInteger("Swing", m_swing);
 
+        yield return new WaitForSeconds(attackDelay);
+
+        attacking = false;
+        anim.SetBool("Attack", false);
     }
 }

@@ -7,9 +7,9 @@ public class SpawnDungeonInn : MonoBehaviour
     private Animator anim;
     private bool isPlayerIn;
 
-    [SerializeField] private GameObject player;                      //플레이어
-    [SerializeField] private GameObject DungeonEnter;                //던전 입구
-    [SerializeField] private Vector3 innSpawnPoint;
+    [SerializeField] private GameObject player;                     //플레이어
+    [SerializeField] private GameObject DungeonEnter;               //던전 입구
+    [SerializeField] private Vector3 innSpawnPoint;                 //던전 입구 스폰될 위치
 
     private void Start()
     {

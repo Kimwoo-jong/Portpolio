@@ -33,6 +33,9 @@ public class LootItemDrop : MonoBehaviour
     public float upwardForce;                           //아이템 드롭시 위로 가해지는 힘
     public float torque;                                //아이템 드롭시 회전하는 힘
 
+    private Rigidbody2D rigid;
+    private BoxCollider2D box;
+
     private void Start()
     {
         helpImage.gameObject.SetActive(false);
@@ -41,6 +44,9 @@ public class LootItemDrop : MonoBehaviour
         dropRadius = 1.5f;
         upwardForce = 5.0f;
         torque = 5.0f;
+
+        rigid = GetComponent<Rigidbody2D>();
+        box = GetComponent<BoxCollider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -61,6 +67,8 @@ public class LootItemDrop : MonoBehaviour
                 //플레이어와 상호작용 이후 열린 이미지로 변경되고 상자가 없어지게 하기 위해
                 //1초의 딜레이를 주었다.
                 //StartCoroutine(DestroyDropBox());
+                box.isTrigger = true;
+                rigid.isKinematic= true;
             }
         }
     }

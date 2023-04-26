@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public GameObject player;
+    public static PlayerHealth instance;
     
     public Slider healthSlider;             //플레이어 체력바 슬라이더
     public Text healthText;                 //플레이어 체력 텍스트
@@ -16,8 +16,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        player = this.gameObject;
-
         maxHealth = 80;
         //체력을 최대로 초기화해줌.
         health = maxHealth;
@@ -48,11 +46,13 @@ public class PlayerHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            Destroy(player);
+            Destroy(this.gameObject);
         }
     }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
+        //플레이어가 데미지를 입음
         if (col.gameObject.CompareTag("Skull"))
         {
             DealDamage(5);

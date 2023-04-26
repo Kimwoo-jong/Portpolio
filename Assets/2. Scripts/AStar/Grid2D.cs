@@ -19,8 +19,6 @@ public class Grid2D : MonoBehaviour
     LayerMask walkableMask;                                     //걸을 수 있는 레이어
     Dictionary<int, int> walkableRegionsDictionary = new Dictionary<int, int>();
 
-
-
     Node[,] grid;
 
     float nodeDiameter;
