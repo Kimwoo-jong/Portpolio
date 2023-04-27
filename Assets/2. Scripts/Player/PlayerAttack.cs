@@ -42,6 +42,7 @@ public class PlayerAttack : MonoBehaviour
         }
 
         AnimControl();
+        SoundManager.instance.PlayerAttackSound();
         StartCoroutine(CorAttack());
     }
     private void AnimControl()

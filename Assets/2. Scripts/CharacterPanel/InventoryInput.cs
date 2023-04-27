@@ -39,5 +39,6 @@ public class InventoryInput : MonoBehaviour
     public void ToggleEquipmentPanel()
     {
         inventoryPanelGO.SetActive(!inventoryPanelGO.activeSelf);
+        SoundManager.instance.PlayerInventorySFX();
     }
 }

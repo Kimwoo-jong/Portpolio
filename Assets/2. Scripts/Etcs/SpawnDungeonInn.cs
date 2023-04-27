@@ -22,6 +22,7 @@ public class SpawnDungeonInn : MonoBehaviour
         {
             SpawnDungeon(col);
             col.gameObject.transform.position = new Vector3(innSpawnPoint.x, 0f, innSpawnPoint.z);
+            SoundManager.instance.EnterDungeonSound();
         }
     }
     private void SpawnDungeon(Collision2D col)

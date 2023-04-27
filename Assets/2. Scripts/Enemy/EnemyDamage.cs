@@ -26,6 +26,7 @@ public class EnemyDamage : MonoBehaviour
     public void DealDamage(float damage)
     {
         health -= damage;
+        SoundManager.instance.EnemyHitSound();
         CheckDeath();
     }
     private void CheckOverheal()
@@ -41,12 +42,13 @@ public class EnemyDamage : MonoBehaviour
         {
             //같은 몬스터가 많이 생성된다면 오브젝트 풀링으로 전환할 예정
             StartCoroutine(DeathEffect());
+            SoundManager.instance.EnemyDeathSound();
         }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
         //Enemy가 데미지를 입음
-        if (col.gameObject.CompareTag("Weapon"))
+        if (col.gameObject.CompareTag("Weapon") && col.gameObject.CompareTag("Attack"))
         {
             DealDamage(20);
             StartCoroutine(DamageEffect());
@@ -55,6 +57,7 @@ public class EnemyDamage : MonoBehaviour
     private IEnumerator DeathEffect()
     {
         death = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+        enemy.GetComponent<SpriteRenderer>().enabled = false;
 
         yield return new WaitForSeconds(0.75f);
 

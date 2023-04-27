@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     
     public Slider healthSlider;             //플레이어 체력바 슬라이더
     public Text healthText;                 //플레이어 체력 텍스트
+    public GameObject deathEffect;          //사망 이펙트
 
     [Header("플레이어 체력")]
     public float health;                    //체력
@@ -46,8 +47,20 @@ public class PlayerHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            Destroy(this.gameObject);
+            health = 0;
+            StartCoroutine(SpawnDeathEffect());
         }
+    }
+    private IEnumerator SpawnDeathEffect()
+    {
+        GameObject obj = Instantiate(deathEffect, transform.position, Quaternion.identity);
+        SoundManager.instance.EnemyDeathSound();
+
+        yield return new WaitForSeconds(0.45f);
+
+        Destroy(obj);
+        Destroy(this.gameObject);
+        CanvasManager.instance.pnlDead.SetActive(true);
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -55,7 +68,7 @@ public class PlayerHealth : MonoBehaviour
         //플레이어가 데미지를 입음
         if (col.gameObject.CompareTag("Skull"))
         {
-            DealDamage(5);
+            DealDamage(30);
         }
     }
 }

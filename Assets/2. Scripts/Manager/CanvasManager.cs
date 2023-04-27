@@ -8,8 +8,9 @@ public class CanvasManager : MonoBehaviour
 {
     public static CanvasManager instance;
 
-    [SerializeField] private GameObject pnlMain;
-    [SerializeField] private GameObject pnlOption;
+    public GameObject pnlMain;
+    public GameObject pnlOption;
+    public GameObject pnlDead;
 
     private bool isOptionOpen;
 
@@ -21,7 +22,7 @@ public class CanvasManager : MonoBehaviour
         }
         else if(instance != null)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }    
 
         DontDestroyOnLoad(this.gameObject);
@@ -32,10 +33,12 @@ public class CanvasManager : MonoBehaviour
         pnlMain = GameObject.Find("Main");
         //옵션 패널은 비활성화된 상태로 시작하기 때문에 부모 오브젝트인 Canvas에서 자식으로 접근한다.
         pnlOption = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
+        pnlDead = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
 
         //메인 패널은 활성화, 옵션 패널은 비활성화인 상태로 시작
         pnlMain.SetActive(true);
         pnlOption.SetActive(false);
+        pnlDead.SetActive(false);
 
         isOptionOpen = false;
     }
@@ -70,6 +73,13 @@ public class CanvasManager : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+    //게임 재시작
+    public void Restart()
+    {
+        //튜토리얼 씬으로 다시 돌아옴
+        SceneManager.LoadScene(2);
+        pnlDead.SetActive(false);
     }
     //설정창을 끄는 버튼에 들어갈 함수
     public void OptionClose()

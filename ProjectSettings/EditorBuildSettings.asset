@@ -17,10 +17,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1. Scenes/Level1.unity
     guid: 92011ea1ba51aa6448a53aca51be2505
-  - enabled: 0
-    path: Assets/1. Scenes/Test.unity
-    guid: 50a9f1403c01d0e428e7ecf53892a7df
-  - enabled: 0
-    path: Assets/1. Scenes/Astaralgorithm.unity
-    guid: 001436ae7ecec274ba433b96bf6f57e2
   m_configObjects: {}

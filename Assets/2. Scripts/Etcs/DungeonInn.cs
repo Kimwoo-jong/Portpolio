@@ -31,12 +31,13 @@ public class DungeonInn : MonoBehaviour
     private void PlayerDisappear()
     {
         player.SetActive(false);
+        SoundManager.instance.CloseDungeonSound();
     }
     IEnumerator AnimEndLoadScene()
     {
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(3);
         player.SetActive(true);
-        yield return null;
     }
     IEnumerator PlayerTouchTrigger()
     {

@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             anim.SetBool("isMove", true);
+            SoundManager.instance.PlayerMoveSound();
         }
 
         //플레이어가 땅에 있을 때만 이펙트 생성
@@ -109,6 +110,7 @@ public class PlayerController : MonoBehaviour
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             anim.SetBool("isJump", true);
             CreateJumpDust();
+            SoundManager.instance.PlayerJumpSound();
         }
     }
     #endregion

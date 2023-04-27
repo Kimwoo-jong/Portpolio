@@ -69,6 +69,7 @@ public class LootItemDrop : MonoBehaviour
                 //StartCoroutine(DestroyDropBox());
                 box.isTrigger = true;
                 rigid.isKinematic= true;
+                Destroy(gameObject);
             }
         }
     }

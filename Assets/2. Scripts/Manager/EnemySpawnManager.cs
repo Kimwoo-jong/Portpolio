@@ -25,6 +25,7 @@ public class EnemySpawnManager : MonoBehaviour
         if (other.CompareTag("Player") && !isSpawn)
         {
             StartCoroutine(SpawnEnemy());
+            SoundManager.instance.EnemySpawnSound();
             isSpawn = !isSpawn;
         }
     }
