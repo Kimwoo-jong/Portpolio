@@ -34,6 +34,7 @@ public class InventoryInput : MonoBehaviour
     public void ToggleStatPanel()
     {
         statPanelGO.SetActive(!statPanelGO.activeSelf);
+        SoundManager.instance.PlayerInventorySFX();
         statTooltipGO.SetActive(false);
     }
     public void ToggleEquipmentPanel()
