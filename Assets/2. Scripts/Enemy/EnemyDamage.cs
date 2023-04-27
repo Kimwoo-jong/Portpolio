@@ -48,7 +48,7 @@ public class EnemyDamage : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         //Enemy가 데미지를 입음
-        if (col.gameObject.CompareTag("Weapon") && col.gameObject.CompareTag("Attack"))
+        if (col.gameObject.CompareTag("Weapon"))
         {
             DealDamage(20);
             StartCoroutine(DamageEffect());
