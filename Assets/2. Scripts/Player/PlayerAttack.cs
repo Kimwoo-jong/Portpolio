@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private Animator anim;
-    private PlayerHealth playerHealth;
 
     [Header("플레이어 공격")]
     [SerializeField] private bool attacking = false;
@@ -19,13 +18,16 @@ public class PlayerAttack : MonoBehaviour
     public GameObject slashEffect;
 
     public GameObject weapon;
+    private BoxCollider2D weaponBox;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
-        weapon = GetComponentInChildren<BoxCollider2D>().gameObject;
-        playerHealth = GetComponentInParent<PlayerHealth>();
-        attackDelay = 0.25f;
+        weaponBox = GetComponentInChildren<BoxCollider2D>();
+        weapon = weaponBox.gameObject;
+        attackDelay = 0.35f;
+
+        weaponBox.enabled = false;
     }
     private void Update()
     {
@@ -68,10 +70,12 @@ public class PlayerAttack : MonoBehaviour
         attacking = true;
         anim.SetBool("Attack", true);
         anim.SetInteger("Swing", m_swing);
+        weaponBox.enabled = true;
 
         yield return new WaitForSeconds(attackDelay);
 
         attacking = false;
         anim.SetBool("Attack", false);
+        weaponBox.enabled = false;
     }
 }

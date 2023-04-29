@@ -53,14 +53,16 @@ public class PlayerHealth : MonoBehaviour
     }
     private IEnumerator SpawnDeathEffect()
     {
-        GameObject obj = Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
         SoundManager.instance.EnemyDeathSound();
 
-        yield return new WaitForSeconds(0.45f);
+        yield return new WaitForSeconds(0.25f);
 
-        Destroy(obj);
-        Destroy(this.gameObject);
         CanvasManager.instance.pnlDead.SetActive(true);
+
+        yield return new WaitForSeconds(0.3f);
+
+        Destroy(this.gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D col)

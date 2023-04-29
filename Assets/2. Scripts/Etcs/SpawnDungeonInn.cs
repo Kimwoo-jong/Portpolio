@@ -13,6 +13,7 @@ public class SpawnDungeonInn : MonoBehaviour
 
     private void Start()
     {
+        DungeonEnter.SetActive(false);
         anim = GetComponent<Animator>();
         isPlayerIn = false;
     }
@@ -31,8 +32,9 @@ public class SpawnDungeonInn : MonoBehaviour
         //첫 번째 충돌지점
         ContactPoint2D contact = col.contacts[0];
 
-        GameObject Inn = Instantiate(DungeonEnter, new Vector2(contact.point.x, 1.3f), Quaternion.identity);
+        DungeonEnter.SetActive(true);
+        DungeonEnter.transform.position = new Vector2(contact.point.x, 1.3f);
 
-        innSpawnPoint = Inn.transform.position;
+        innSpawnPoint = DungeonEnter.transform.position;
     }
 }

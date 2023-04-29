@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemySpawnManager : MonoBehaviour
 {
-    public GameObject spawner;                  //Enemy 스포너
-    public GameObject enemy;                    //Enemy 오브젝트
+    public GameObject spawner;                     //Enemy 스포너
+    public GameObject enemy;                       //Enemy 오브젝트
 
     public GameObject spawnEffectPrefab;        //스폰 이펙트
 
@@ -15,7 +15,6 @@ public class EnemySpawnManager : MonoBehaviour
 
     private void Start()
     {
-        spawner = GameObject.Find("EnemySpawner");
         isSpawn = false;
     }
 

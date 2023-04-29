@@ -22,6 +22,13 @@ public class Unit : MonoBehaviour
         //아닐 경우 그대로
         CheckCurrentGrid();
     }
+    private void FixedUpdate()
+    {
+        if (target == null)
+        {
+            StopAllCoroutines();
+        }
+    }
 
     void CheckCurrentGrid()
     {

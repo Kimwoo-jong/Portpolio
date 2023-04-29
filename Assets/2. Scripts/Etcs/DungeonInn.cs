@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DungeonInn : MonoBehaviour
 {
+    [SerializeField] private FadeImage fadeImage;
     private Animator anim;
     private bool isPlayerIn;
 
@@ -12,6 +13,7 @@ public class DungeonInn : MonoBehaviour
 
     private void Start()
     {
+        fadeImage = GameObject.Find("FadeOutCanvas").GetComponent<FadeImage>();
         player = GameObject.Find("Player");
         anim = GetComponent<Animator>();
         isPlayerIn = false;
@@ -32,6 +34,7 @@ public class DungeonInn : MonoBehaviour
     {
         player.SetActive(false);
         SoundManager.instance.CloseDungeonSound();
+        fadeImage.FadeOut();
     }
     IEnumerator AnimEndLoadScene()
     {

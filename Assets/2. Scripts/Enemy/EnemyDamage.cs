@@ -6,13 +6,13 @@ public class EnemyDamage : MonoBehaviour
 {
     public GameObject enemy;                //Enemy 오브젝트
     private Animator anim;                  //애니메이터
-    private float health;                   //체력
-    private float maxHealth;                //최대 체력
+    public float health;                   //체력
+    public float maxHealth;                //최대 체력
+    public bool isHit;                     //맞았는지 판단 (중첩 데미지가 들어가는 것을 방지)
 
     public GameObject lootBox;              //아이템 박스
     public GameObject deathEffectPrefab;    //사망 이펙트 프리팹
     private GameObject death;               //사망 이펙트
-
 
     private void Start()
     {
@@ -22,12 +22,22 @@ public class EnemyDamage : MonoBehaviour
         maxHealth = 40f;
         //체력을 최대로 초기화해줌.
         health = maxHealth;
+        isHit = true;
     }
     public void DealDamage(float damage)
     {
-        health -= damage;
-        SoundManager.instance.EnemyHitSound();
-        CheckDeath();
+        if(isHit)
+        {
+            health -= damage;
+            SoundManager.instance.EnemyHitSound();
+            CheckDeath();
+            Debug.Log("10 데미지");
+        }
+        else
+        {
+            Debug.Log("무적상태");
+            return;
+        }
     }
     private void CheckOverheal()
     {
@@ -50,7 +60,6 @@ public class EnemyDamage : MonoBehaviour
         //Enemy가 데미지를 입음
         if (col.gameObject.CompareTag("Weapon"))
         {
-            DealDamage(20);
             StartCoroutine(DamageEffect());
         }
     }
@@ -61,7 +70,6 @@ public class EnemyDamage : MonoBehaviour
 
         yield return new WaitForSeconds(0.75f);
 
-        Destroy(death);
         Instantiate(lootBox, transform.position, Quaternion.identity);
         Destroy(enemy);
     }
@@ -69,9 +77,12 @@ public class EnemyDamage : MonoBehaviour
     private IEnumerator DamageEffect()
     {
         anim.SetBool("IdleHit", true);
+        isHit = true;
+        DealDamage(10);
 
         yield return new WaitForSeconds(0.35f);
 
         anim.SetBool("IdleHit", false);
+        isHit = false;
     }
 }

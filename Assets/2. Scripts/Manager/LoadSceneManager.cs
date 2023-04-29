@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 public class LoadSceneManager : MonoBehaviour
 {
     [SerializeField] private Image loadingBar;                   //로딩바로 사용될 이미지
-    private Text loadingTxt;                    //로딩 텍스트
+    private Text loadingTxt;                                     //로딩 텍스트
     [SerializeField] private float _fillAmount;
 
-    private string[] loadText;                  //Loading. . . << 을 출력하기 위한 String 배열
+    private string[] loadText;                                   //Loading. . . << 을 출력하기 위한 String 배열
 
-    private int count = 0;                      //배열 인덱스를 위한 Int 변수
-    private float curLoadTime = 0.0f;                  //현재 로딩시간
+    private int count = 0;                              //배열 인덱스를 위한 Int 변수
+    private float curLoadTime = 0.0f;                   //현재 로딩시간
     private float maxLoadTime = 10.0f;                  //로딩시간
 
     private void Start()
@@ -22,7 +22,6 @@ public class LoadSceneManager : MonoBehaviour
         loadingTxt = GetComponentInChildren<Text>();
         //배열 초기화
         loadText = new string[] { "Loading.", "Loading..", "Loading..." };
-
         loadingBar.fillAmount = 0f;
 
         StartCoroutine(LoadAsyncScene());
@@ -37,15 +36,13 @@ public class LoadSceneManager : MonoBehaviour
         _fillAmount = 0.0f;
 
         //씬 로딩이 완료될 때까지 반복
-        while(!async.isDone)
+        while (!async.isDone)
         {
             loadingTxt.text = loadText[count++];
             curLoadTime += Time.time;
 
             _fillAmount = curLoadTime / maxLoadTime;
             loadingBar.fillAmount = _fillAmount;
-
-            Debug.Log(_fillAmount);
 
             if (count > 2)
             {
@@ -57,7 +54,7 @@ public class LoadSceneManager : MonoBehaviour
                 loadingBar.fillAmount = 1.0f;
             }
 
-            if(curLoadTime >= maxLoadTime)
+            if (curLoadTime >= maxLoadTime)
             {
                 //바로 씬 전환이 일어나는 경우가 있어 의도적으로 지연시키기 위함.
                 yield return new WaitForSeconds(1.0f);
